@@ -1,0 +1,33 @@
+h2{
+    text-align: center;
+    color: blue;
+}
+body{
+    background-color: aquamarine;
+}
+img{
+    border: 5px double green;
+    
+}
+.prvi, .treci{
+    color: brown;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.drugi{
+    color: blueviolet;
+    font-size: 20px;
+
+}
+a{
+    text-decoration: none;
+}
+.drugi a{
+    color: red;
+    
+    
+}
+.drugi a:hover{
+    color: green;
+    
+}
