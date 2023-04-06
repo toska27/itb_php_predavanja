@@ -51,3 +51,6 @@ a:active{
 li:nth-child(even){
     color: red;
 }
+h6{
+    color: purple;
+}
