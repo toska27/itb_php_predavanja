@@ -1,0 +1,24 @@
+*{
+    box-sizing: border-box;
+}
+#d1{
+    margin: 0;
+    width: 100%;
+}
+#kutija1{
+    display: inline-block;
+    border: 1px solid black;
+    background-color: rgb(241, 224, 165);
+    width: 50%;
+    padding: 10px 5px 3px 8px;
+    margin: 0;
+}
+
+#kutija2{
+    display: inline-block;
+    border: 1px solid black;
+    background-color: rgb(155, 154, 150);
+    width: 50%;
+    padding: 10px 5px 3px 8px;
+    margin: 0;
+}
