@@ -1,0 +1,33 @@
+header{ 
+    width: 100%;
+    height: 100px;
+    background-image: url(pizza.jpg);
+    position: relative;  
+}
+div{
+    
+    height: 100px;
+    margin: 0;
+    
+/*
+    position: absolute;
+    top: 0;
+    right: 0;
+*/
+/*
+    position: absolute;
+    bottom: 0;
+    left: 0;
+*/
+/*
+
+    position: absolute;
+    bottom: 0;
+    right: 0; 
+*/
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 30%;
+    bottom: 30%;
+}
