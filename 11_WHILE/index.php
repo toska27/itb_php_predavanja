@@ -177,7 +177,7 @@
     echo "<hr>";
 
     // Zadatak 11
-    $k = $k1 = 12;
+    $k = 12;
     $i = 1;
     $d = 0;
     while($i <= $k) {
@@ -186,7 +186,7 @@
         }
         $i++;
     }
-    echo "Broj $k1 je deljiv sa $d broja";
+    echo "Broj $k je deljiv sa $d broja";
     echo "<hr>";
     
     // Zadatak 12
@@ -199,11 +199,62 @@
         }
         $i++;
     }
-    if($brojac > 2){
-        echo "Broj $n nije prost broj";
+    if($brojac == 2){
+        echo "Broj $n je prost broj";
     }
     else{
-        echo "Broj $n je prost broj";
+        echo "Broj $n nije prost broj";
+    }
+
+    // 2.nacin
+    $k = 6;
+    $i = 2;
+    $prost = true; // pretpostavka da je broj prost
+    // while ($i <= sqrt($k)) moze i ovako Najidealniji slucaj
+    while($i < $k) {
+        if($k % $i == 0) {
+            $prost = false;
+            break;
+        }
+        $i++;
+    }
+    if ($prost == true) {
+        echo "<p>Broj $k jeste prost</p>";
+    }
+    else {
+        echo "<p>Broj $k nije prost</p>";
+    }
+
+    echo "<hr>";
+
+    // Zadatak 13
+    $i = 20;
+    $n = 1;
+    $p = 1;
+    while($i >= $n) { 
+        $p *= $i;
+        if ($p > 10000) {  
+            break;
+        }
+        $i--;
+    }
+    echo "$p <br>";
+    echo "<p style='color:red;'>$i</p>";
+    
+    echo "<hr>";
+
+    // Zadatak 14
+    
+    $a = $a2 =  3;
+    $b = 15;
+    if ($a < $b) {
+        $rez = $a;
+        while ($rez <= $b) {
+            $rez *= $a;
+        }
+        echo $rez;
+    } else {
+        echo "<p>Greska</p>";
     }
     
 ?>
