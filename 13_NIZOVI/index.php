@@ -216,4 +216,187 @@
     */
     echo "<hr>";
 
+    // Zadatak 7
+    $brojevi = [1, 2, 15];
+
+    /* Netacan pristup
+    $zbir = 0;
+    $broj = 0;
+    for($i = 0; $i < count($brojevi); $i++){
+        $zbir += $brojevi[$i];
+        $arsr = $zbir / count($brojevi);
+        if ($brojevi[$i] > $arsr){
+            $broj++;
+        }
+    } */
+
+    // Tacan pristup
+    $zbir = 0;
+    $broj = 0;
+    for($i = 0; $i < count($brojevi); $i++){
+        $zbir += $brojevi[$i];
+    }
+    $arsr = $zbir / count($brojevi);
+    for($i = 0; $i < count($brojevi); $i++){
+        if ($brojevi[$i] > $arsr){
+            $broj++;
+        }
+    }
+    echo "<p>Broj brojeva vecih od srednje vrednosti niza je $broj</p>";
+
+    echo "<hr>";
+
+    // Zadatak 8
+    $brojevi = [5, 6, 14, -4, 14, 11, -7, 14];
+    $zbir = 0;
+    for($i=0; $i<count($brojevi); $i++){
+        if($brojevi[$i] > 0){
+            $zbir += $brojevi[$i];
+        }
+    }
+    echo "<p>Zbir pozitivnih elemenata niza je $zbir</p>";
+
+    // Bonus zadatak
+    // Izracunati srednju vrednost parnih elemenata celobrojnog niza
+    $zbir = 0;
+    $broj = 0;
+    for($i=0; $i<count($brojevi); $i++){
+        if($brojevi[$i] % 2 == 0){
+            $broj++;
+            $zbir += $brojevi[$i];
+        }
+    }
+    if($broj != 0){
+        $srvr = $zbir / $broj;
+    } 
+    else {
+        $srvr = 0;
+    }
+    echo "<p>Srednja vrednost parnih elemenata niza je $srvr</p>";
+    
+    echo "<hr>";
+
+    // Zadatak 9
+    $brojevi = [5, 6, 14, -4, 14, 11, -7, 14];
+    $broj = 0;
+    for($i=0; $i<count($brojevi); $i++){
+        if($brojevi[$i] % 2 == 0){
+            $broj++;
+        }
+    }
+    echo "<p>Broj parnih elemenata u nizu je $broj</p>";
+
+    echo "<hr>";
+
+    // Zadatak 10
+    $brojevi = [5, 6, 14, -4, 14, 11, -7, 14];
+    $suma = 0;
+    for($i=0; $i<count($brojevi); $i++){
+        if($i % 2 == 0){
+            $suma += $brojevi[$i];
+        }
+    }
+    echo "<p>Suma elemenata sa parnim indeksom je $suma</p>";
+
+    echo "<hr>";
+
+    // Zadatak 11
+    $brojevi = [5, 6, -14, -4, 14, 11, -7];
+    var_dump($brojevi);
+    echo "<br>";
+    for($i=0; $i<count($brojevi); $i++){
+        $brojevi[$i] *= -1;
+        // $brojevi[$i] = -$brojevi[$i];
+    }
+    var_dump($brojevi);
+
+    echo "<hr>";
+
+    // Zadatak 12
+    $brojevi = [5, 6, -14, -4, 14, 11, -7];
+    var_dump($brojevi);
+    echo "<br>";
+    for($i=0; $i<count($brojevi); $i++){
+        if($brojevi[$i] % 2 != 0 && $i % 2 == 0){
+            $brojevi[$i] *= -1;
+        }
+    }
+    var_dump($brojevi);
+
+    echo "<hr>";
+
+    // Zadatak 13
+    $brojevi = [5, 6, -14, -4, 14, 11, -7];
+    $broj = 0;
+    for($i=0; $i<count($brojevi); $i++){
+        if($brojevi[$i] % 2 == 0 && $i % 2 != 0){
+            $broj++;
+        }
+    }
+    echo "<p>Broj parnih elemenata sa neparnim indeksom je $broj</p>";
+
+    echo "<hr>";
+
+    // Zadatak 14
+    $imena = ["Stefan", "Adam", "Milos", "Nemanja", "Aleksandar", "Kristina"];
+    for($i=0; $i<count($imena); $i++){
+        $ime = $imena[$i];
+        $duzina = strlen($ime);                               // mb_strlen($ime, UTF-8);  ->  Ako korisitmo nasa slova 
+        echo "<p>Duzina stringa $ime je $duzina</p>";
+    }
+
+    echo "<hr>";
+
+    // Zadatak 15
+    $imena = ["Stefan", "Adam", "Milos", "Nemanja", "Aleksandar", "Kristina"];
+    $stringMaxDuzine = $imena[0];
+    $maxDuzina = strlen($imena[0]);
+
+    for($i=1; $i<count($imena); $i++){
+        if(strlen($imena[$i]) > $maxDuzina){
+            $maxDuzina = strlen($imena[$i]);
+            $stringMaxDuzine = $imena[$i];
+        }
+    }
+    echo "<p>Element niza sa maksimalnom duzinom je: $stringMaxDuzine</p>";
+
+    echo "<hr>";
+
+    
+    
+    // Kako da odredimo da li se u nekom stringu nalazi neki podstring?
+    // Koristimo funkciju strpos($str1, $str2)
+    // Rezultat poziva ove funkcije:
+    // 1) Ako se $str2 nalazi unutar $str1, onda se vraca INDEKS prvog pojavljivanja
+    // CEO BROJ(0, 1, 2, ...)
+    // 2) Ako se $str2 ne nalazi unutar $str1 onda se vraca false
+    // LOGICKA VREDNOST
+    /*
+    if(strpos("Sreda", "S") !== false){
+        echo "<p>String 'S' se nalazi u stringu 'Sreda'</p>";
+    } else {
+        echo "<p>String 'S' se ne nalazi u stringu 'Sreda'</p>";
+    } */
+
+    // Zadatak 17
+    $imena = ["Stefan", "Uros", "Milos", "Nemanja", "Aleksandar", "Kristina"];
+    $brojSadrziA = 0;
+    for($i=0; $i<count($imena); $i++){
+        if(strpos($imena[$i], "a") !== false){
+            $brojSadrziA++;
+        }
+    }
+    echo "<p>Broj stringova koji sadrze slovo 'a' je $brojSadrziA</p>";
+
+    echo "<hr>";
+
+    // Zadatak 18
+    $imena = ["Stefan", "Uros", "Milos", "Nemanja", "Aleksandar", "Kristina"];
+    $brojPocinjeA = 0;
+    for($i=0; $i<count($imena); $i++){
+        if(strpos($imena[$i], "a") === 0 || strpos($imena[$i], "A") === 0){                  // if($imena[$i][0] == 'a' || $imena[$i][0] == 'A') -> moze i ovako
+            $brojPocinjeA++;                                                                 // if(strtolower($imena[$i][0]) == 'a')             -> ili ovako
+        }
+    }
+    echo "<p>Broj stringova koji pocinju sa  slovo 'a' ili 'A' je $brojPocinjeA</p>";
 ?>
