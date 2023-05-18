@@ -145,7 +145,7 @@
     }
     echo "<p>Najveci element ima vrednost $maks, Indeks njegovog prvog pojavljivanja je $indeksMaks</p>";
 
-    //6.1. indeks prvog pojavljivanja max elementa
+    //6.1. indeks poslednjeg pojavljivanja max elementa
     // 1.nacin
     $brojevi = [5, 14, -4, 14, 11, -7, 14];
     $maks = $brojevi[0];
