@@ -7,6 +7,13 @@
 
         // metode
 
+        // KONSTRUKTOR
+        public function __construct($m, $b, $ik) {
+            $this->setMarka($m);
+            $this->setBoja($b);
+            $this->setImaKrov($ik);
+        }
+
         // GETERI: vraca vrednosti polja
 
         public function getMarka(){
@@ -60,28 +67,13 @@
         }
     }
 
-    // Kada se kreira klasa, obicno se na sledeci nacin implementira:
-    // 1) Sva polja stavimo da su private
-    // 2) Za svako polje napisemo geter i seter
-    //   2.1) geter: dohvata (cita) vrednost polja
-    //   2.2) seter: postavlja novu vrednost polju
+    // 1) Kreiramo objekat
+    $a1 = new Auto("BMW", "plava", false);
 
-    $a1 = new Auto();
+    // 2) Koristimo objekat
+    $a1->ispis();
 
-    // $a1->marka = "Audi";  // Nije moguce jer polje marka je privatno polje
-    $a1->setMarka("Audi");
-    $a1->setImaKrov(true);
-
-    if($a1->getImaKrov() === true){
-        echo "Automobil marke " .$a1->getMarka(). " ima krov<br>";
-    } elseif($a1->getImaKrov() === false){
-        echo "Automobil marke " .$a1->getMarka(). " nema krov<br>";
-    } else{
-        echo "Automobil marke " .$a1->getMarka(). " nema validno postavljeno polje za krov<br>";
-    }
-
-    // echo $a1->marka;  // Nije moguce: marka private polje
-    echo $a1->getMarka();  // Ovo radi: poziva se geter za polje marka, geter vrati vrednost polja, a onda mi ispisemo tu vrednost
-
+    // $a1->setMarka("Opel");   // ovako menjamo vrednost, ako je private setMarka ne moze da se menja
+    
 
 ?>
