@@ -82,3 +82,9 @@ VALUES
 
 INSERT INTO customers
 VALUES (4, "Ana", 25, "Bubanjskih heroja 48", 600, 1, "Srbija", 37);
+
+INSERT INTO tasks (task_id, title, start_date, due_date, status, description, priority)
+VALUES
+(1, "Čas iz ITBootcampa", "2023-06-02", 1, "Čas iz baze podataka", 1),
+(2, "Setnja", "2023-06-01", "2023-06-01", 1, "Lagana setnja", 0),
+(3, "Uradi domaci zadatak", "2023-06-03", NULL, 1, "Domaci zadatak iz SQL-a", 1);
