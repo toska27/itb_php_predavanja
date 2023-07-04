@@ -38,8 +38,26 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Prikaz svih podataka
     Route::get('/genre', [GenreController::class, 'index'])->name('genre.index');
     Route::get('/person', [PersonController::class, 'index'])->name('person.index');
+
+    // Prikaz forme za unos
+    Route::get('/genre/create', [GenreController::class, 'create'])->name('genre.create');
+    Route::get('/person/create', [PersonController::class, 'create'])->name('person.create');
+
+    // Validacija podatak i upis novog reda
+    Route::post('/genre', [GenreController::class, 'store'])->name('genre.store');
+    Route::post('/person', [PersonController::class, 'store'])->name('person.store');
+
+    //forma za izmenu podatka
+    Route::get('/genre/{genre}/edit', [GenreController::class, 'edit'])->name('genre.edit');
+    Route::get('/person/{person}/edit', [PersonController::class, 'edit'])->name('person.edit');
+
+    //izmena postojećeg podatka
+    Route::put('/genre/{genre}', [GenreController::class, 'update'])->name('genre.update');
+    Route::put('/person/{person}', [PersonController::class, 'update'])->name('person.update');
+
 
 });
 

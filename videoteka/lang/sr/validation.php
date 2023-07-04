@@ -141,5 +141,9 @@ return [
     */
 
     'attributes' => [
+        'name_en' => 'naziv na engleskom',
+        'name' => 'ime',
+        'surname' => 'prezime',
+        'b_date' => 'datum rođenja'
     ],
 ];

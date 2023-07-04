@@ -46,6 +46,24 @@
                             </li>
                     </ul>
 
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a id="navbarAdministacija" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('Settings')}}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarAdministacija">
+                                <a class="dropdown-item" href="{{ route('genre.index') }}">
+                                    {{ __('Genres') }}
+                                </a>
+                                <a class="dropdown-item" href="{{ route('person.index') }}">
+                                    {{ __('People') }}
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

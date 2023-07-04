@@ -3,5 +3,17 @@
     "Email Address" : "Email adresa",
     "Password" : "Lozinka",
     "Remember Me" : "Zapamti me",
-    "You are logged in!" : "Uspešno ste logovani!"
+    "You are logged in!" : "Uspešno ste logovani!",
+    "Genres" : "Žanrovi",
+    "Name EN" : "Naziv EN",
+    "Name SR" : "Naziv SR",
+    "Settings" : "Administracija",
+    "Add" : "Dodaj",
+    "Save" : "Sačuvaj",
+    "Cancel" : "Otkaži",
+    "Edit" : "Izmeni",
+    "Name" : "Ime",
+    "Surname" : "Prezime",
+    "Birth date" : "Datum rođenja",
+    "People" : "Ljudi"
 }

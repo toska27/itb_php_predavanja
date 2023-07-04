@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PersonController extends Controller
 {
@@ -23,7 +24,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+        return view('person.create');
     }
 
     /**
@@ -31,7 +32,14 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|alpha',
+            'surname' => 'required|alpha',
+            'b_date' => 'required|date'
+        ]);
+
+        Person::create($request->all()); 
+        return redirect()->route('person.index');
     }
 
     /**
@@ -47,7 +55,7 @@ class PersonController extends Controller
      */
     public function edit(Person $person)
     {
-        //
+        return view('person.edit', compact('person'));
     }
 
     /**
@@ -55,7 +63,15 @@ class PersonController extends Controller
      */
     public function update(Request $request, Person $person)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'alpha'],
+            'surname' => ['required', 'alpha'],
+            'b_date' => ['required', 'regex:/^[^A-Za-z]*$/']
+        ]);
+
+        $person->update($request->all());
+
+        return redirect()->route('person.index');
     }
 
     /**
