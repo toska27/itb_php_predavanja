@@ -23,19 +23,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $g)
+                            @foreach ($data as $p)
                                 <tr>
-                                    <td>{{ $g->id }}</td>
-                                    <td>{{ $g->name }}</td>
-                                    <td>{{ $g->surname }}</td>
-                                    <td>{{ $g->b_date }}</td>
+                                    <td>{{ $p->id }}</td>
+                                    <td>{{ $p->name }}</td>
+                                    <td>{{ $p->surname }}</td>
+                                    <td>{{ $p->b_date }}</td>
                                     <td>
-                                        <a href="{{ route('person.edit', ['person'=>$g->id]) }}" class="btn btn-success btn-sm">{{ __('Edit') }}</a>
+                                        <form method="POST" action="{{ route('person.destroy', ['person'=>$p->id]) }}">
+                                            @method('delete')
+                                            @csrf
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="{{ route('person.edit', ['person'=>$p->id]) }}" class="btn btn-success btn-sm">{{ __('Edit') }}</a>
+                                                <button type="submit" class="btn btn-sm btn-danger">{{ __('Delete') }}</button>
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $data->links() }}
                 </div>
             </div>
         </div>

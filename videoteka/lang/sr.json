@@ -15,5 +15,16 @@
     "Name" : "Ime",
     "Surname" : "Prezime",
     "Birth date" : "Datum rođenja",
-    "People" : "Ljudi"
+    "People" : "Ljudi",
+    "Delete" : "Izbriši",
+    "Successfully added." : "Uspešno dodato.",
+    "Successfully updated." : "Uspešno izmenjeno.",
+    "Successfully deleted." : "Uspešno obrisano.",
+    "Showing" : "Prikaz",
+    "to" : "-",
+    "of" : "od",
+    "results" : "rezultata",
+    "No." : "R.br.",
+    "Rating" : "Ocena",
+    "Running time" : "Vreme trajanja"
 }

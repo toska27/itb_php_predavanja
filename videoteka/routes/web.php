@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 //use Illuminate\Support\Facades\App;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\FilmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,16 @@ Route::middleware('auth')->group(function () {
     //izmena postojećeg podatka
     Route::put('/genre/{genre}', [GenreController::class, 'update'])->name('genre.update');
     Route::put('/person/{person}', [PersonController::class, 'update'])->name('person.update');
+
+    //brisanje podatka
+    Route::delete('/genre/{genre}', [GenreController::class, 'destroy'])->name('genre.destroy');
+    Route::delete('/person/{person}', [PersonController::class, 'destroy'])->name('person.destroy');
+
+    //definisanje svih sedam ruta za kontrolera
+    Route::resource('film', FilmController::class);
+
+
+
 
 
 });

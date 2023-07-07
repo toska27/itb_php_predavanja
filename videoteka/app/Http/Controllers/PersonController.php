@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Person;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\App;
 
 class PersonController extends Controller
 {
@@ -13,8 +14,19 @@ class PersonController extends Controller
      */
     public function index()
     {
-        // dovlaci sve podatke
-        $data = Person::all();
+        $locale = App::currentLocale(); // en/sr
+
+        //en-> sort po name_en
+        //sr-> sort po name_sr
+
+        if($locale=='en') {
+            $data = Person::orderBy('name')->orderBy('surname')->paginate(5);
+        } elseif($locale=='sr'){
+            $data = Person::orderBy('name')->orderBy('surname')->paginate(5);
+        } else{
+            // all dovlaci sve podatke iz tabele genres
+            $data = Person::paginate(5);
+        }   
 
         return view('person.index', ['data'=>$data]);
     }
@@ -38,7 +50,11 @@ class PersonController extends Controller
             'b_date' => 'required|date'
         ]);
 
-        Person::create($request->all()); 
+        Person::create($request->all());
+        
+        $request->session()->flash('alertType', 'success');
+        $request->session()->flash('alertMsg', 'Successfully added.');
+
         return redirect()->route('person.index');
     }
 
@@ -71,6 +87,9 @@ class PersonController extends Controller
 
         $person->update($request->all());
 
+        $request->session()->flash('alertType', 'success');
+        $request->session()->flash('alertMsg', 'Successfully updated.');
+
         return redirect()->route('person.index');
     }
 
@@ -79,6 +98,11 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        $person->delete();
+
+        session()->flash('alertType', 'success');
+        session()->flash('alertMsg', 'Successfully deleted.');
+
+        return redirect()->route('person.index');
     }
 }

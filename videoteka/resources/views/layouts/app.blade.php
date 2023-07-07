@@ -15,6 +15,9 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -30,39 +33,37 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                @if($currentLocale=="en")
-                                    <span class="nav-link text-primary">EN</a>
-                                @else
-                                    <a class="nav-link" href="{{ route('lang', ['locale' => 'en']); }}">EN</a>
-                                @endif
-                            </li>
-                            <li class="nav-item">
-                                @if($currentLocale=="sr")
-                                    <span class="nav-link text-primary">SR</a>
-                                @else
-                                    <a class="nav-link" href="{{ route('lang', ['locale' => 'sr']); }}">SR</a>
-                                @endif
-                            </li>
+                        <li class="nav-item">
+                            @if($currentLocale=="en")
+                                <span class="nav-link text-primary" >EN</span>
+                            @else
+                                <a class="nav-link" href="{{ route('lang', ['locale' => 'en']); }}">EN</a>
+                            @endif
+                            
+                        </li>
+                        <li class="nav-item">
+                            @if($currentLocale=="sr")
+                                <span class="nav-link text-primary" >SR</span>
+                            @else
+                                <a class="nav-link" href="{{ route('lang', ['locale' => 'sr']); }}">SR</a>
+                            @endif
+                        </li>
                     </ul>
-
+                    @auth
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a id="navbarAdministacija" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('Settings')}}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-start" aria-labelledby="navbarAdministacija">
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarAdministacija">
                                 <a class="dropdown-item" href="{{ route('genre.index') }}">
                                     {{ __('Genres') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('person.index') }}">
-                                    {{ __('People') }}
                                 </a>
                             </div>
                         </li>
                     </ul>
-                    
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -104,7 +105,19 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @if(session('alertMsg'))
+                        <div class="alert alert-{{session('alertType')}} alert-dismissible fade show" role="alert">
+                            {{ __(session('alertMsg'))}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    @yield('content')
+                </div>
+            </div>
+        </div>
         </main>
     </div>
 </body>
