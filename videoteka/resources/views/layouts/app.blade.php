@@ -62,6 +62,10 @@
                                 </a>
                             </div>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('film.index') }}">{{ __('Films') }}</a>
+                        </li>
+
                     </ul>
                     @endauth
 
@@ -114,8 +118,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-                    @yield('content')
                 </div>
+            </div>
+            <div class="row justify-content-center">
+                @yield('content')
             </div>
         </div>
         </main>

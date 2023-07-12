@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="row mb-2">
+		<div class="col-12">
+        <a class="btn btn-secondary float-end" href="{{ route('film.index') }}">
+            {{ __('Back') }}
+        </a>
+		</div>
+</div>
+<div class="row mb-2">
   <div class="card">
     <div class="row">
       <div class="col-4 text-center my-5">
@@ -26,20 +34,20 @@
 
           <div class="row">
             <div class="col-12 mb-3">
-              <p class="mb-0">{{ __('Director')}}</p>
+              <p class="mb-0">{{ __('Directors')}}</p>
               <p class="text-muted">
               @foreach($film->directors as $w)
-                    {{  $w->fullName}}
+                    {{  $w->full_name}}
                 @endforeach
             </p>
           </div>
 
           <div class="row">
             <div class="col-12 mb-3">
-              <p class="mb-0">{{ __('Writer')}}</p>
+              <p class="mb-0">{{ __('Writers')}}</p>
               <p class="text-muted">
                 @foreach($film->writers as $w)
-                    {{  $w->fullName}}
+                    {{  $w->full_name}}
                 @endforeach
                 </p>
           </div>
@@ -49,7 +57,7 @@
               <p class="mb-0">{{ __('Stars')}}</p>
               <p class="text-muted">
               @foreach($film->stars as $w)
-                    {{  $w->fullName}}
+                    {{  $w->full_name}}
                 @endforeach
             </p>
           </div>
@@ -68,4 +76,5 @@
       </div>
     </div>
   </div>
+  </div>  
 @endsection

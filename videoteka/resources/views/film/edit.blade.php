@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="row mb-3 border border-start-0 border-top-0 border-end-0">
-                    <label for="director" class="col-2 col-form-label text-end">{{ __('Director') }}</label>
+                    <label for="director" class="col-2 col-form-label text-end">{{ __('Directors') }}</label>
                     <div class="col-10">
                         @foreach($people as $p)
                         <div class="form-check form-check-inline col-3 @error('directors') is-invalid @enderror">
@@ -74,7 +74,7 @@
                             value="{{$p->id}}"
                             @checked(in_array($p->id, old('directors',$film->directors()->pluck('id')->toArray())))
                             >
-                            <label class="form-check-label" for="iChbDirectors{{$p->id}}">{{$p->fullName}}</label>
+                            <label class="form-check-label" for="iChbDirectors{{$p->id}}">{{$p->full_name}}</label>
                         </div>
                         @endforeach   
 
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="row mb-3 border border-start-0 border-top-0 border-end-0">
-                    <label for="director" class="col-2 col-form-label text-end">{{ __('Writer') }}</label>
+                    <label for="director" class="col-2 col-form-label text-end">{{ __('Writers') }}</label>
                     <div class="col-10">
                         @foreach($people as $p)
                         <div class="form-check form-check-inline col-3 @error('writers') is-invalid @enderror">
@@ -97,7 +97,7 @@
                             value="{{$p->id}}"
                             @checked(in_array($p->id, old('writers',$film->writers()->pluck('id')->toArray())))
                             >
-                            <label class="form-check-label" for="iChbWriters{{$p->id}}">{{$p->fullName}}</label>
+                            <label class="form-check-label" for="iChbWriters{{$p->id}}">{{$p->full_name}}</label>
                         </div>
                         @endforeach 
                         @error('writers')
@@ -118,7 +118,7 @@
                             value="{{$p->id}}"
                             @checked(in_array($p->id, old('stars',$film->stars()->pluck('id')->toArray())))
                             >
-                            <label class="form-check-label" for="iChbStars{{$p->id}}">{{$p->fullName}}</label>
+                            <label class="form-check-label" for="iChbStars{{$p->id}}">{{$p->full_name}}</label>
                         </div>
                         @endforeach 
                         @error('stars')
@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="row mb-3  border border-start-0 border-top-0 border-end-0">
-                    <label for="genre" class="col-2 col-form-label text-end">{{ __('Genre') }}</label>
+                    <label for="genre" class="col-2 col-form-label text-end">{{ __('Genres') }}</label>
                     <div class="col-10">
                         @foreach($genres as $g)
                         <div class="form-check form-check-inline @error('genres') is-invalid @enderror">

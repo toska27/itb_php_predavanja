@@ -7,16 +7,119 @@ use Illuminate\Http\Request;
 use App\Models\Genre;
 use App\Models\Person;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
 
 class FilmController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+            /*$request->validate([
+                'rating' => 'nullable|integer|between:1,10',
+                'year_from' => 'nullable|date_format:Y|before_or_equal:today',
+                'year_to' => 'nullable|date_format:Y|before_or_equal:today',
+                'time_from' => 'nullable|integer|min:1',
+                'time_to' => 'nullable|integer|min:1'
+            ]);
+
+            if($request->year_from && $request->year_to){
+                $request->validate([
+                    'year_to'=>'gte:year_from'
+                ]); 
+            }
+            
+            if($request->time_from && $request->time_to){
+                $request->validate([
+                    'time_to'=>'gte:time_from'
+                ]); 
+            }*/
+            $rule=[
+                'rating' => 'nullable|integer|between:1,10',
+                'year_from' => 'nullable|date_format:Y|before_or_equal:today',
+                'year_to' => 'nullable|date_format:Y|before_or_equal:today',
+                'time_from' => 'nullable|integer|min:1',
+                'time_to' => 'nullable|integer|min:1'
+            ];
+
+            if($request->year_from && $request->year_to){
+                $rule['year_to'].='|gte:year_from';
+            }
+            
+            if($request->time_from && $request->time_to){
+                $rule['time_to'].='|gte:time_from';
+            }
+            $request->validate($rule); 
+            
+            $rating = $request->rating;
+            $yearFrom = $request->year_from;
+            $yearTo = $request->year_to;
+            $timeFrom = $request->time_from;
+            $timeTo = $request->time_to;
+            $name = $request->name;
+            $genre = $request->genre;
+            $star = $request->star;
+
+            $datas = Film::when($rating, function (Builder $query) use ($rating) {
+                $query->where('rating', '>=', $rating);
+            })
+            ->when($yearFrom, function (Builder $query) use ($yearFrom) {
+                $query->where('year', '>=', $yearFrom);
+            })
+            ->when($yearTo, function (Builder $query) use ($yearTo) {
+                $query->where('year', '<=', $yearTo);
+            })
+            ->when($timeFrom, function (Builder $query) use ($timeFrom) {
+                $query->where('running_h', '>=', $timeFrom);
+            })
+            ->when($timeTo, function (Builder $query) use ($timeTo) {
+                $query->where(function (Builder $query) use ($timeTo) {
+                    $query->where('running_h', '<', $timeTo)
+                        ->orWhere(function (Builder $query) use ($timeTo) {
+                            $query->where('running_h', '=', $timeTo)
+                            ->whereNull('running_m');
+                        });
+                });
+                //select * from films where running_h<GORNJE_GRANICE ili (running_h=GORNJE_GRANICE and running_m is null)
+            })
+            /*->toSql();
+            echo $datas; exit;*/
+
+            ->when($name, function (Builder $query) use ($name) {
+                $query->where('name', 'like', "%".$name."%");
+            })
+            ->when($genre, function (Builder $query) use ($genre) {
+                $query->whereHas('genres', function (Builder $query) use ($genre){
+                    $query->where('id', $genre);
+                });
+            })
+            ->when($star, function (Builder $query) use ($star) {
+                $query->whereHas('stars', function (Builder $query) use ($star){
+                    $query->where('id', $star);
+                });
+            })
+
+
+            ->get();
+
+
+            
+            $populateData = $request->all();
+            
+        }else{
+            $datas=Film::all();
+            $populateData = [];
+        }
+
+        $genres=Genre::all();
+        $people=Person::all();
+        return view('film.index', compact('datas', 'populateData', 'genres', 'people'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -156,6 +259,19 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
-        //
+        try{
+            $film->delete();
+
+            session()->flash('alertType', 'success');
+            session()->flash('alertMsg', 'Successfully deleted.');
+
+            return redirect()->route('film.index');
+        }
+        catch(Exception $e) {
+            session()->flash('alertType', 'danger');
+            session()->flash('alertMsg', 'Cannot be deleted.');
+
+            return redirect()->route('film.index');
+        }
     }
 }
